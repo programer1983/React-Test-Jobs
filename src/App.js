@@ -2,26 +2,56 @@ import React from "react"
 import './App.css';
 
 function App() {
-  const inputRef = React.useRef()
+  const [title, setTitle] = React.useState("")
+  const [body, setBody] = React.useState("")
+  const [posts, setPosts] = React.useState([
+    {id: 1, title: "React", body: "React"},
+    {id: 2, title: "Redux", body: "Redux"},
+    {id: 3, title: "Next", body: "Next"},
+  ])
 
 
-  const addNewText = (e) => {
+  const addNewPost = (e) => {
     e.preventDefault()
-    console.log(inputRef.current.value)
 
+    const newPost = {
+      id: Date.now(),
+      title,
+      body,
+    }
+    setPosts([...posts, newPost])
+    setTitle("")
+    setBody("")
   }
-
-
+ 
   return (
     <div className="App">
-      <input
-          ref={inputRef}
-          type="text" 
-          placeholder="Enter text" 
+      <div className="form">
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          type="text"
+          placeholder="Enter title"
         />
-       <div>
-         <button onClick={addNewText}>Add Text</button>
-      </div>
+
+        <input
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          type="text"
+          placeholder="Enter description"
+        />
+        <button type="button" onClick={addNewPost}>Add Post</button>
+    </div>
+      <div className="posts__list">
+        {posts.map((post) => (
+            <div key={post.id} className="posts__desc">
+                <strong>{post.title}</strong>
+              <div>
+                {post.body}
+              </div>
+            </div>
+          ))}
+      </div> 
     </div>
   );
 }
