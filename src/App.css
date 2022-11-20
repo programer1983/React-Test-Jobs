@@ -1,32 +1,14 @@
 .App {
-    display: flex;
-    flex-direction: column;
-    margin-left: 400px;
-    margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  width: 30%;
 }
 
-
-.my__input {
-    width: 50%;
-    font-size: 20px;
-    padding: 10px;
+input {
     margin-bottom: 20px;
-    border: 2px solid green;
-}
-
-.my__input:focus {
-    outline: none;
-    border: none;
 }
 
 
-.my__button {
-    width: 10%;
-    margin-left: 180px;
-    padding: 5px 15px;
-    color: white;
-    background-color: green;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-}

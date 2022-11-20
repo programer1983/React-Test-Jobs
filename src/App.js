@@ -1,15 +1,27 @@
 import React from "react"
 import './App.css';
-import MyButton from "./components/MyButton";
-import MyInput from "./components/MyInput";
 
 function App() {
+  const inputRef = React.useRef()
+
+
+  const addNewText = (e) => {
+    e.preventDefault()
+    console.log(inputRef.current.value)
+
+  }
 
 
   return (
     <div className="App">
-        <MyInput type="rexr" placeholder="Enter your text" />
-        <MyButton>Add New Post</MyButton>
+      <input
+          ref={inputRef}
+          type="text" 
+          placeholder="Enter text" 
+        />
+       <div>
+         <button onClick={addNewText}>Add Text</button>
+      </div>
     </div>
   );
 }
