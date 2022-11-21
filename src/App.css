@@ -8,5 +8,9 @@
 
 .posts__list {
     margin-top: 50px;
-    margin-left: 550px;
+    margin-left: 630px;
+}
+
+.select {
+    text-align: center;
 }
