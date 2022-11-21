@@ -1,6 +1,5 @@
 import React from "react"
-import './App.css';
-import PostForm from "./components/PostForm";
+import './App.css'
 
 function App() {
   const [posts, setPosts] = React.useState([
@@ -10,30 +9,25 @@ function App() {
   ])
 
 
-  const createPost = (newPost) => {
-    setPosts([...posts, newPost])
-  }
-
-  const deletePost = (id) => {
-    setPosts(posts.filter((post) => post.id !== id))
-  }
+ const deletePost = (id) => {
+  setPosts(posts.filter(post => post.id !== id))
+ }
  
   return (
     <div className="App">
-      <PostForm create={createPost} />
-     
       <div className="posts__list">
-        {posts.map((post) => (
+        {posts.length === 0 ? (
+          <div className="message" style={{color: "red"}}><h1>Messge not found!</h1></div>
+           ) : (
+            posts.map((post) => (
             <div key={post.id} className="posts__desc">
                 <strong>{post.title}</strong>
               <div>
                 {post.body}
               </div>
-              <div>
-                 <button type="button" onClick={() => deletePost(post.id)}>Delete</button>
-              </div>
+              <button onClick={() => deletePost(post.id)}>Delete</button>
             </div>
-          ))}
+          )))}
       </div> 
     </div>
   );
