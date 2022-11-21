@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PostForm = ({create}) => {
+const PostForm = ({create, dletePost}) => {
   const [post, setPost] = React.useState({title: "", body: ""})
 
   const addNewPost = (e) => {

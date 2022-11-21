@@ -13,6 +13,10 @@ function App() {
   const createPost = (newPost) => {
     setPosts([...posts, newPost])
   }
+
+  const deletePost = (id) => {
+    setPosts(posts.filter((post) => post.id !== id))
+  }
  
   return (
     <div className="App">
@@ -24,6 +28,9 @@ function App() {
                 <strong>{post.title}</strong>
               <div>
                 {post.body}
+              </div>
+              <div>
+                 <button type="button" onClick={() => deletePost(post.id)}>Delete</button>
               </div>
             </div>
           ))}
