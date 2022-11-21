@@ -2,8 +2,7 @@ import React from "react"
 import './App.css';
 
 function App() {
-  const [title, setTitle] = React.useState("")
-  const [body, setBody] = React.useState("")
+ const [post, setPost] = React.useState({title: "", body: ""})
   const [posts, setPosts] = React.useState([
     {id: 1, title: "React", body: "React"},
     {id: 2, title: "Redux", body: "Redux"},
@@ -14,29 +13,23 @@ function App() {
   const addNewPost = (e) => {
     e.preventDefault()
 
-    const newPost = {
-      id: Date.now(),
-      title,
-      body,
-    }
-    setPosts([...posts, newPost])
-    setTitle("")
-    setBody("")
+    setPosts([...posts, {...post, id: Date.now()}])
+    setPost({title: "", body: ""})
   }
  
   return (
     <div className="App">
       <div className="form">
         <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={post.title}
+          onChange={(e) => setPost({...post, title: e.target.value})}
           type="text"
           placeholder="Enter title"
         />
 
         <input
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
+          value={post.body}
+          onChange={(e) => setPost({...post, body: e.target.value})}
           type="text"
           placeholder="Enter description"
         />
