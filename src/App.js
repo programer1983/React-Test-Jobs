@@ -13,11 +13,11 @@ function App() {
 
   const [searchPost, setSearchPost] = React.useState("")
 
-  const searchedPosts = () => {
+  const searchedPosts = React.useMemo(() => {
     return posts.filter(post => post.title.toLowerCase().includes(searchPost.toLowerCase()))
-  }
+  }, [searchPost, posts])
  
-  const searchpost = searchedPosts()
+ 
 
   return (
     <div className="App">
@@ -30,7 +30,7 @@ function App() {
 
       
       <div className="posts__list">
-        {searchpost.map((post) => (
+        {searchedPosts.map((post) => (
             <div key={post.id} className="posts__desc">
                 <strong>{post.title}</strong>
               <div>{post.body}</div>
