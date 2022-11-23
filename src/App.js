@@ -1,5 +1,7 @@
 import React from "react"
 import './App.css'
+import MyModal from "./MyModal"
+import PostForm from "./PostForm"
 
 function App() {
   const [posts, setPosts] = React.useState([
@@ -11,29 +13,26 @@ function App() {
     {id: 6, title: "Java", body: "Java"},
   ])
 
-  const [searchPost, setSearchPost] = React.useState("")
+  const [modal, setModal] = React.useState(false)
 
-  const searchedPosts = React.useMemo(() => {
-    return posts.filter(post => post.title.toLowerCase().includes(searchPost.toLowerCase()))
-  }, [searchPost, posts])
- 
- 
+  const addNewPost = (newPost) => {
+    setPosts([...posts, newPost])
+    setModal(false)
+  }
 
   return (
     <div className="App">
-      <input 
-         value={searchPost}
-         type="text" 
-         onChange={e => setSearchPost(e.target.value)}
-         placeholder="Search"
-      />
-
+      <button className="button" onClick={() => setModal(true)}>Create Post</button>
       
+       <MyModal visible={modal} setVisible={setModal}>
+          <PostForm create={addNewPost} />
+       </MyModal>
+     
       <div className="posts__list">
-        {searchedPosts.map((post) => (
-            <div key={post.id} className="posts__desc">
+        {posts.map((post, index) => (
+            <div key={post.id}  className="posts__desc">
                 <strong>{post.title}</strong>
-              <div>{post.body}</div>
+                <div>{post.body}</div>
             </div>
           ))}
       </div> 
