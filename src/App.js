@@ -1,31 +1,30 @@
 import React from "react"
 import './App.css'
-import PostService from "./PostService"
+import { data } from "./data"
+import Loader from "./Loader";
 
 function App() {
-  const [posts, setPosts] = React.useState([])
-
-  async function fetchPosts(){
-    const posts = await PostService.getAll()
-    setPosts(posts)
-  }
+  const [loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    fetchPosts()
-  }, [])
+    let timer = setTimeout(() => setLoaded(true), 2000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
-  console.log(posts)
-  
-  
+
   return (
     <div className="App">
       <div className="posts__list">
-        {posts.map((post, index) => (
-            <div key={post.id}  className="posts__desc">
-                <strong>{index + 1}. {post.title}</strong>
-                <div>{post.body}</div>
-            </div>
-          ))}
+         {!loaded 
+            ? <Loader /> 
+            : data.map((item, index) => (
+                <div key={item.id}>
+                  <strong>{index + 1}. {item.title}</strong>
+                  <p>{item.body}</p>
+                </div>
+         ))}
       </div> 
     </div>
   );
