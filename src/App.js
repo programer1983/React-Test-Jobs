@@ -1,13 +1,13 @@
 import React from "react"
 import './App.css'
-import axios from "axios"
+import PostService from "./PostService"
 
 function App() {
   const [posts, setPosts] = React.useState([])
 
   async function fetchPosts(){
-    const response = await axios.get("https://jsonplaceholder.typicode.com/posts")
-    setPosts(response.data)
+    const posts = await PostService.getAll()
+    setPosts(posts)
   }
 
   React.useEffect(() => {
