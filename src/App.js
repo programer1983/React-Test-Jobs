@@ -2,6 +2,7 @@ import React from "react"
 import './App.css'
 import MyModal from "./MyModal"
 import PostForm from "./PostForm"
+import { usePosts } from "./usePostHook"
 
 function App() {
   const [posts, setPosts] = React.useState([
@@ -13,23 +14,22 @@ function App() {
     {id: 6, title: "Java", body: "Java"},
   ])
 
-  const [modal, setModal] = React.useState(false)
+  const [search, setSearch] = React.useState("")
 
-  const addNewPost = (newPost) => {
-    setPosts([...posts, newPost])
-    setModal(false)
-  }
+  const searchPosts = usePosts(posts, search)
 
   return (
     <div className="App">
-      <button className="button" onClick={() => setModal(true)}>Create Post</button>
+
+      <input
+        type="text"
+        placeholder="Search"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+      />
       
-       <MyModal visible={modal} setVisible={setModal}>
-          <PostForm create={addNewPost} />
-       </MyModal>
-     
       <div className="posts__list">
-        {posts.map((post, index) => (
+        {searchPosts.map((post, index) => (
             <div key={post.id}  className="posts__desc">
                 <strong>{post.title}</strong>
                 <div>{post.body}</div>

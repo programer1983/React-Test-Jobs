@@ -14,18 +14,5 @@
 }
 
 input {
-    width: 95%;
-    margin-bottom: 10px;
-}
-
-
-.button {
-    margin-left: 600px;
-    margin-top: 50px;
-    padding: 8px 10px;
-    cursor: pointer;
-    color: white;
-    background-color: green;
-    border: none;
-    border-radius: 5px;
+    margin-left: 570px;
 }
