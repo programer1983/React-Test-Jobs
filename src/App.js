@@ -1,31 +1,55 @@
 import React from "react"
 import './App.css'
-import { data } from "./data"
-import Loader from "./Loader";
+import PostService from "./PostServuce"
+import {getPageCount, getPagesArray} from "./Pages"
+
+
 
 function App() {
-  const [loaded, setLoaded] = React.useState(false);
+  const [posts, setPosts] = React.useState([])
+  const [totalPages, setTotalPages] = React.useState(0)
+  const [limit, setLimit] = React.useState(10)
+  const [page, setPage] = React.useState(1)
+  let pagesArray = getPagesArray(totalPages)
+
+  const fetchPosts = async () => {
+    const response = await PostService.getAll(limit, page)
+    setPosts(response.data)
+    const totalCount = response.headers['x-total-count']
+    setTotalPages(getPageCount(totalCount, limit))
+  }
+
 
   React.useEffect(() => {
-    let timer = setTimeout(() => setLoaded(true), 2000);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
+    fetchPosts()
+  }, [page])
 
+  const changePage = (page) => {
+    setPage(page)
+  }
+  
 
   return (
     <div className="App">
       <div className="posts__list">
-         {!loaded 
-            ? <Loader /> 
-            : data.map((item, index) => (
-                <div key={item.id}>
-                  <strong>{index + 1}. {item.title}</strong>
-                  <p>{item.body}</p>
+            {posts.map((post) => (
+                <div key={post.id}>
+                  <strong>{post.id}. {post.title}</strong>
+                  <p>{post.body}</p>
                 </div>
          ))}
-      </div> 
+      </div>
+      <div className="pages__wrqpper">
+        {pagesArray.map((p) => 
+          <span
+             key={p}
+             onClick={() => changePage(p)}
+             className={page === p ? "page page__current" : "page"}
+          >
+             {p}
+          </span>
+        )}
+      </div>
     </div>
   );
 }

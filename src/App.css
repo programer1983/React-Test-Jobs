@@ -9,7 +9,29 @@
 
 
 .posts__list {
+    width: 500px;
     margin-top: 50px;
-    margin-left: 500px;
+    margin-left: 430px;
+}
+
+.pages__wrqpper {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.page {
+    height: 20px;
+    width: 30px;
+    text-align: center;
+    padding: 10px;
+    margin-right: 5px;
+    border: 1px solid teal;
+    cursor: pointer;
+}
+
+.page__current {
+    border: 1px solid orange;
+    font-weight: bold;
 }
 
