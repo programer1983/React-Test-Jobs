@@ -1,11 +1,15 @@
-.posts__list {
-    width: 500px;
-    margin-left: 450px;
+.title__list {
+    text-align: "center";
+    margin-top: "50px";
+    margin-bottom: "50px";
+    color: "green";
 }
 
-.post__item {
-    margin: 20px
+.posts__list {
+    width: 500px;
+    margin-left: 440px;
 }
+
 
 .message {
     color: red;
@@ -13,14 +17,10 @@
     margin-top: 100px;
 }
 
-button {
-    margin-left: 600px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    text-transform: uppercase;
+.post__items {
+    padding: 10px;
+}
+
+p {
+    padding-top: 10px;
 }

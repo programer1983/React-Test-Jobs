@@ -1,44 +1,57 @@
 import React from "react"
 import './App.css'
-import ApiContext from "./Context"
-
+import {useSelector, useDispatch} from "react-redux"
+import {setLoading, setPosts, setError} from "./apiSlice"
+import axios from "axios"
 
 function App() {
-  const {fetchPosts, posts, error, changeColor, dispatch} = React.useContext(ApiContext)
+  const {loading, posts, error} = useSelector(state => state.postsFetch)
+  const dispatch = useDispatch()
 
-
- React.useEffect(() => {
-  fetchPosts()
- }, [])
-
- if (error) {
-    return <h1 className="message">Errror for connect!</h1>
+ const fetchPostsApi = async () => {
+    try {
+      dispatch(setLoading())
+      const response = await axios.get("https://jsonplaceholder.typicode.com/posts")
+      dispatch(setPosts(response.data))
+    }catch(e){
+      dispatch(setError(e.message))
+    }
  }
 
- const handleClick = () => {
-      dispatch({type: "SET_COLOR"})
- }
-  
+  React.useEffect(() => {
+    fetchPostsApi()
+  }, [])
+
+
+  if (loading) {
+      return <h1 className="message">Loading is process!</h1>
+  }
  
- return (
-    <div className="App" 
-        style={{
-          backgroundColor: changeColor ? "#222" : "white", 
-          color: changeColor &&  "white"
-        }}>
 
-        <button onClick={handleClick}>Change Color</button>
-      
-        <div className="posts__list">
-          {posts.map((post, index) => (
-            <div key={post.id} className="post__item">
-              <h2>{index + 1}. {post.title}</h2>
-              <p>{post.body}</p>
+  return (
+      <div className="App">
+        {error ? (
+          <h1 className="message">Loading error!</h1>
+          ) : (
+            <div className="posts__list">
+              <h1 style={{
+                  textAlign: "center",
+                  marginTop: "50px",
+                  marginBottom: "50px",
+                  color: "green",
+                }}>
+                  Posts List
+              </h1>
+              {posts.map((post, index) => (
+                <div key={post.id} className="post__items">
+                  <h2>{index + 1}. {post.title}</h2>
+                  <p>{post.body}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-    </div>
-  );
+          )}
+      </div>
+    );
 }
 
 export default App;
