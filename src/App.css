@@ -1,26 +1,9 @@
-.title__list {
-    text-align: "center";
-    margin-top: "50px";
-    margin-bottom: "50px";
-    color: "green";
-}
-
-.posts__list {
-    width: 500px;
-    margin-left: 440px;
+.App {
+    display: flex;
+    padding: 30px;
 }
 
 
-.message {
-    color: red;
-    margin-left: 500px;
-    margin-top: 100px;
-}
-
-.post__items {
-    padding: 10px;
-}
-
-p {
-    padding-top: 10px;
+.App > div {
+    margin-right: 58px;
 }
