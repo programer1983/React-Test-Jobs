@@ -4,91 +4,56 @@
     box-sizing: border-box;
 }
 
-body {
-    background: #fff;
+nav{
+    height: 50px;
+    width: 100%;
+    background-color: gray;
+    position: fixed;
+    z-index: 50;
+    display: flex;
+    align-items: center;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
+main{
+    padding: 50px;
+}
+
+p{
+    margin: 20px;
+}
+
+.burger-btn{
+    width: 30px;
+    height: 30px;
     position: relative;
-    width: 500px;
-    height: 300px;
-    background: #f1f1f1;
-    margin: 100px auto 0px;
-    word-break: break-all;
-    border: 1px solid rgba(0,0,0,0.274)
-}
-
-.block__tabs {
-    display: flex;
-}
-
-.tabs {
-    padding: 15px;
-    text-align: center;
-    width: 50%;
-    background: rgba(0,0,0,0.274);
+    margin-left: 20px;
     cursor: pointer;
-    border-bottom: 1px solid rgba(0,0,0,0.274);
-    box-sizing: content-box;
-    position: relative;
-    outline: none;
 }
 
-.tabs:not(:last-child){
-    border-right: 1px solid rgba(0,0,0,0.274);
-}
-
-.active-tabs {
-    background: white;
-    border: 1px solid transparent;
-}
-
-.active-tabs:before {
+.burger-btn::before{
     content: "";
-    display: block;
     position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 2px);
-    height: 5px;
-    background: rgb(88, 147, 241);
+    top: 0;
+    width: 30px;
+    background-color: black;
+    height: 3px;
 }
 
-button {
-    border: none;
+.burger-btn span{
+    position: absolute;
+    top: 13.5px;
+    width: 30px;
+    background-color: black;
+    height: 3px;
 }
 
-.content__tabs {
-    flex: 1 0 auto;
+.burger-btn::after{
+   content: "";
+   position: absolute; 
+   bottom: 0;
+   width: 30px;
+   background-color: black;
+   height: 3px;    
 }
 
-.content {
-    background: white;
-    padding: 20px;
-    width: 100%;
-    height: 100%;
-    display: none;
-}
 
-.content h2 {
-    padding: 0px 0px 5px 0px;
-}
-
-.content hr {
-    width: 100px;
-    height: 2px;
-    background: #222;
-    margin-bottom: 5px;
-}
-
-.content p {
-    width: 100%;
-    height: 100%;
-}
-
-.active__content {
-    display: block;
-}
