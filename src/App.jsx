@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import './App.css';
-import Acordion from './components/Accordion/Accordion';
-import { data } from './data';
+import Header from './components/Header/Header';
+import Hero from './components/Hero/Hero';
+import About from './components/About/About';
+import Travels from './components/Travels/Travels';
+import Footer from './components/Footer/Footer';
+
 
 function App() {
     
     return (
         <div className="App">
-            {data.map((dat) => 
-                <Acordion 
-                    key={dat.id} 
-                    question={dat.question} 
-                    answer={dat.answer}
-                    id={dat.id}
-                />
-            )}
+           <Header />
+           <main>
+              <Hero />
+              <About />
+              <Travels />
+           </main>
+           <Footer />
         </div>
     )
 }
