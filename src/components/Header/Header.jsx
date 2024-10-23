@@ -8,14 +8,9 @@ const Header = () => {
     <header className="header">
         <div className="container">
             <div className="header__inner">
-                <motion.a href="#" 
-                    className="heade__logo"
-                    whileHover={{
-                        scale: 1.3,
-                    }}
-                >
+                <a href="#" className="heade__logo">
                     <img src={headerLogo} alt="header-logo" className="header__logo-img"/>
-                </motion.a>
+                </a>
                 <nav className="nav">
                     <ul className="header__list">
                         {headerData.map(heddata => 

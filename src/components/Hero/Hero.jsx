@@ -1,60 +1,33 @@
 import "./Hero.scss"
 import {motion} from 'framer-motion'
 
+const textAnimation = {
+  hidden: {
+    x: -100,
+    opacity: 0,
+  },
+  visible: custom => ({
+    x: 0,
+    opacity: 1,
+    transition: {delay: custom * 0.2, duration: 0.6}
+  })
+}
+
 const Hero = () => {
-  // const pVariants = {
-  //   hidden: {
-  //     x: -1000,
-  //     opacity: 0
-  //   },
-  //   visible: {
-  //     x: 0,
-  //     opacity: 1
-  //   }
-  // }
 
   return (
     <div className="hero">
         <div className="container">
-            <div className="hero__inner">
-                <h1 className="hero__title">Welcome to travel with our agency</h1>
-                <motion.p 
-                  className="hero__text"
-                  initial={{
-                     x: -1000,
-                     opacity: 0
-                  }}
-                  animate={{
-                    x: 0,
-                    opacity: 1
-                  }}
-                  // initial={'hidden'}
-                  // animate={'visible'}
-                  transition={{
-                    delay: 0.5,
-                    ease: 'easeInOut'
-                  }}
-                  // variants={pVariants}
-                >
-                  Unforgettable travel to twenty-five exotic countries, with the highest level of comfort and convenience
-                </motion.p>
-                <motion.a 
-                  href="#" 
-                  className="hero__button button" 
-                  animate={{rotate: 360}}
-                  transition={{
-                    delay: 3,
-                    duration: 2, 
-                    repeat: Infinity, 
-                    repeatDelay: 1,
-                    repeatType: 'reverse',
-                    type: 'tween',
-                    ease: 'easeInOut'
-                  }}
-                >
-                  Start now
-                </motion.a>
-            </div>
+            <motion.div 
+              className="hero__inner"
+              initial='hidden'
+              whileInView='visible'
+              viewport={{once: true}}
+            >
+              <motion.h1 custom={1} variants={textAnimation} className="hero__title">Welcome to travel with our agency</motion.h1>
+              <motion.p  custom={3}  variants={textAnimation} className="hero__text">Unforgettable travel to twenty-five exotic countries, with the highest level of comfort and convenience</motion.p>
+              <motion.a  custom={5}  variants={textAnimation} href="#" className="hero__button button" >Start now</motion.a>
+            </motion.div>
         </div>
       
     </div>
