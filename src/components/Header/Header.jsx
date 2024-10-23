@@ -1,15 +1,21 @@
 import "./Header.scss"
 import  {headerData} from "./header-data"
 import headerLogo from "./../images/header-logo.png"
+import {motion} from 'framer-motion'
 
 const Header = () => {
   return (
     <header className="header">
         <div className="container">
             <div className="header__inner">
-                <a href="#" className="heade__logo">
+                <motion.a href="#" 
+                    className="heade__logo"
+                    whileHover={{
+                        scale: 1.3,
+                    }}
+                >
                     <img src={headerLogo} alt="header-logo" className="header__logo-img"/>
-                </a>
+                </motion.a>
                 <nav className="nav">
                     <ul className="header__list">
                         {headerData.map(heddata => 
